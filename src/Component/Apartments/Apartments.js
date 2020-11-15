@@ -26,9 +26,9 @@ const Apartments = () => {
                                 </div>
                                 <div className="pt-4 d-flex justify-content-around ">
                                     <h3 className="price"><b>$195</b></h3>
-                                    <button className="px-4">
-                                        <Link to="/apartment/wash">View Details</Link>
-                                    </button>
+                                    <Link className="btn px-4" to="/apartment/wash">
+                                        View Details
+                                    </Link>
                                 </div> 
                             </div>                  
                         </div>
@@ -46,7 +46,9 @@ const Apartments = () => {
                                 </div>
                                 <div className="pt-4 d-flex justify-content-around ">
                                     <h3 className="price"><b>$195</b></h3>
-                                    <button className="px-4">View Details</button>
+                                    <Link className="btn px-4" to="/apartment/wash">
+                                        View Details
+                                    </Link>
                                 </div> 
                             </div>                  
                         </div>
@@ -64,7 +66,9 @@ const Apartments = () => {
                                 </div>
                                 <div className="pt-4 d-flex justify-content-around ">
                                     <h3 className="price"><b>$195</b></h3>
-                                    <button className="px-4">View Details</button>
+                                    <Link className="btn px-4" to="/apartment/wash">
+                                        View Details
+                                    </Link>
                                 </div> 
                             </div>                  
                         </div>
@@ -82,7 +86,9 @@ const Apartments = () => {
                                 </div>
                                 <div className="pt-4 d-flex justify-content-around ">
                                     <h3 className="price"><b>$195</b></h3>
-                                    <button className="px-4">View Details</button>
+                                    <Link className="btn px-4" to="/apartment/wash">
+                                        View Details
+                                    </Link>
                                 </div> 
                             </div>                  
                         </div>
@@ -100,7 +106,9 @@ const Apartments = () => {
                                 </div>
                                 <div className="pt-4 d-flex justify-content-around ">
                                     <h3 className="price"><b>$195</b></h3>
-                                    <button className="px-4">View Details</button>
+                                    <Link className="btn px-4" to="/apartment/wash">
+                                        View Details
+                                    </Link>
                                 </div> 
                             </div>                  
                         </div>
@@ -118,7 +126,9 @@ const Apartments = () => {
                                 </div>
                                 <div className="pt-4 d-flex justify-content-around ">
                                     <h3 className="price"><b>$195</b></h3>
-                                    <button className="px-4">View Details</button>
+                                    <Link className="btn px-4" to="/apartment/wash">
+                                        View Details
+                                    </Link>
                                 </div> 
                             </div>                  
                         </div>

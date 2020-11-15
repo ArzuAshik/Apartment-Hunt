@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 import './Details.css'
 import sub1 from '../../images/sub1.png';
 import sub2 from '../../images/sub2.png';
@@ -11,16 +12,21 @@ const Details = () => {
 
     return (
         <section id="details">
+            <Navbar />
+            <header id="two" className="d-flex flex-column align-items-center justify-content-center">
+                <div className="title"> 
+                    <h1 className="text-white my-0"><b>Apartment : {name}</b></h1> 
+                </div>
+            </header>
             <div className="container">
-                <h1>this is header</h1>
                 <div className="row py-5">
                     <div className="col-md-8">
                         <img src={sub1} alt="" className="w-100" />
-                        <div className="d-flex w-100 justify-content-between my-4">
-                            <img width="170px" className="mr-3" src={sub1} alt=""/>
-                            <img width="170px" className="mr-3" src={sub2} alt=""/>
-                            <img width="170px" className="mr-3" src={sub3} alt=""/>
-                            <img width="170px" className="mr-3" src={sub4} alt=""/>
+                        <div className="d-flex justify-content-between my-4">
+                            <img className="w-25" src={sub1} alt=""/>
+                            <img className="w-25" src={sub2} alt=""/>
+                            <img className="w-25" src={sub3} alt=""/>
+                            <img className="w-25" src={sub4} alt=""/>
                         </div>
 
                         <div className="d-flex justify-content-between mt-4">
@@ -43,7 +49,8 @@ const Details = () => {
                         <p>Room Category : 3 Large Bed Rooms with 3 Verandas, Spacious Drawing, Dining &amp; Family Living Room, Highly Decorated Kitchen with Store Room and Servant room with attached Toilet</p>
                         <p>Facilities : 1 Modern Lift, All Modern Amenities &amp; Semi Furnished, Electricity with full generator, Central Gas Geyser, Car Parking with Driver's Accommodation, Community Conference Hall, Roof top Beautiful Garden and Grassy Ground, Cloth Hanging Facility with CC camera</p>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-4 mt-5 mt-md-0">
+                        <h3 className="text-center mb-3"><b>Book Now</b></h3>
                         <form action="" className="bg-light p-4">
                             <input name="name" type="text" placeholder="Name" className="form-control my-3" required />
                             <input name="phone" type="tel" placeholder="Phone" className="form-control my-3" required />
