@@ -10,6 +10,7 @@ import Header from './Component/Header/Header';
 import Navbar from './Component/Navbar/Navbar';
 import PrivateRoute from './Component/Login/PrivateRoute';
 import Login from './Component/Login/Login';
+import Dashboard from './Component/BookingPage/Dashboard';
 export const UserContext = createContext();
 
 function App() {
@@ -36,9 +37,9 @@ function App() {
           <PrivateRoute path="/apartment/:name">
             <Details />
           </PrivateRoute>
-          <PrivateRoute path="/dashboard">
-            <h2>This is dashboard</h2>
-          </PrivateRoute>
+          {/* <PrivateRoute path="/dashboard"> */}
+            <Dashboard />
+          {/* </PrivateRoute> */}
         </Switch>
       </Router>
     </UserContext.Provider>
