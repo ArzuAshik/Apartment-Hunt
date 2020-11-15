@@ -1,0 +1,25 @@
+.sidebar{
+    background-color:white;
+    position: fixed;
+  
+}
+
+.icon{
+    color: black;
+    font-size: 20px;
+}
+span{
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+}
+.sidebar li{
+    margin-bottom: 2em;
+}
+.sidebar li:hover span{
+    display: inline-block;
+    transform: translate(5px);
+}
+.sidebar svg{
+    margin-right: 5px;
+}
