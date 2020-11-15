@@ -1,0 +1,19 @@
+#details h2, #details h4 {
+  color: #16322e;
+}
+
+#details h3 {
+  color: #275a53;
+}
+
+#details p {
+  color: #6e6e6e;
+  margin: 0;
+  font-size: 20px;
+}
+
+#details button {
+  background-color: #275a53;
+  color: white;
+}
+/*# sourceMappingURL=Details.css.map */

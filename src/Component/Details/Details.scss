@@ -1,0 +1,20 @@
+$primary: #16322e;
+$secondary: #275a53;
+
+#details {
+    h2, h4 {
+        color: $primary;
+    }
+    h3 {
+        color: $secondary;
+    }
+    p {
+        color: #6e6e6e;
+        margin: 0;
+        font-size: 20px;
+    }
+    button {
+        background-color: $secondary;
+        color: white;
+    }
+}
