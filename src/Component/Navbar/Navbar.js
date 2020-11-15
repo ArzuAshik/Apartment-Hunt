@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../App';
 import logo from '../../images/Logo.png';
 
-
 function Navbar() {
+  const [user] = useContext(UserContext);
+
     return (
       <nav className="ml-5 mr-5 navbar navbar-expand-md navbar-light">
         <Link className="navbar-brand" to="/">
@@ -27,9 +29,15 @@ function Navbar() {
             <li className="nav-item active mx-2">              
             <a className="nav-link" href="#footer">Contact</a>
             </li>
-            <Link to="/login">
-              <button style={{background:"#275A53"}} type="button" className="btn px-3 text-white">Login</button>
-            </Link>
+            {
+              user.signed ?
+              <Link to="/dashboard">
+                <button style={{background:"#275A53"}} type="button" className="btn px-3 text-white">Dashboard</button>
+              </Link> :
+              <Link to="/login">
+                <button style={{background:"#275A53"}} type="button" className="btn px-3 text-white">Login</button>
+              </Link>
+            }
           </ul>
         </div>
       </nav>

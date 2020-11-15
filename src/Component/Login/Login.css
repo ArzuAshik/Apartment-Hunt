@@ -21,4 +21,9 @@
 #login form.form1 button.rounded-pill {
   border: 1px solid #a7a7a7;
 }
+
+#login form.form1 button.rounded-pill:hover {
+  -webkit-box-shadow: 0 0 10px 0 gray;
+          box-shadow: 0 0 10px 0 gray;
+}
 /*# sourceMappingURL=Login.css.map */

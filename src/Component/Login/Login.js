@@ -1,120 +1,177 @@
 import React, { useContext, useState } from 'react';
-
 import firebase from 'firebase';
 import "firebase/auth";
 import firebaseConfig from './firebaseconfig';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import google from '../../images/google.png';
 import fb from '../../images/fbIcon.png';
-import "./Login.css"
+import "./Login.css";
+import { UserContext } from '../../App';
 import Navbar from '../Navbar/Navbar';
 
 function Login() {
-  const [user, setUser] = useState({
-    email: '',
-    password: '',
-    error: '',
-    success:false
-  })
-
-  const provider = new firebase.auth.GoogleAuthProvider();
-  const fbprovider = new firebase.auth.FacebookAuthProvider();
-  const history = useHistory();
-  const location= useLocation();
-  const { from } = location.state || { from: { pathname: "/booking" } };
-
   if(firebase.apps.length ===0){
     firebase.initializeApp(firebaseConfig);
   }
 
-////////////// google auth start///////////////
+  const [user, setUser] = useContext(UserContext);
+  const [newUser, setNewUser] = useState(false);
+  const [validForm, setValidForm] = useState(true);
+  const provider = new firebase.auth.GoogleAuthProvider();
+  const fbprovider = new firebase.auth.FacebookAuthProvider();
+  const history = useHistory();
+  const location= useLocation();
+  const { from } = location.state || { from: { pathname: "/" } };
 
+
+  // Google Sign In
   const googlesignin = () => {
     firebase.auth().signInWithPopup(provider)
     .then(result => {
-      var token = result.credential.accessToken;
-      var {displayName,email} = result.user;
-      const signuser ={name:displayName,email}
-    //   setloguser(signuser)
+      const {displayName, email} = result.user;
+      const optUser = {
+        signed: true,
+        name: displayName,
+        email: email,
+        message: 'Login Successful'
+      }
+      setUser(optUser);
       history.replace(from);
     })
     .catch(error => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      var email = error.email;
-      var credential = error.credential;
+      const optUser = {};
+      optUser.message = error.message;
+      setUser(optUser);
     });
   }
 
-/////////////fb auth start//////////////////////
+  // Facbook Login
   const fblogin = () => {
     firebase.auth().signInWithPopup(fbprovider)
     .then(function(result) {
-      var token = result.credential.accessToken;
-      var {displayName,email} = result.user;
-      const signuser ={name:displayName,email}
+      const {displayName, email} = result.user;
+      const optUser = {
+        signed: true,
+        name: displayName,
+        email: email,
+        message: 'Login Successful'
+      }
+      setUser(optUser);
       history.replace(from);
     })
     .catch(error => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      var email = error.email;
-      var credential = error.credential;
+      const optUser = {};
+      optUser.message = error.message;
+      setUser(optUser);
     });
   }
 
-////////////////////email auth start////////////////
+  // Email Password Login
   const handleChange=(e)=>{
-    let isFormValid ;
-    if(e.target.name==='email'){
-      isFormValid = /\S+@\S+\.\S/.test(e.target.value)
-    }
-    if(e.target.name==='password'){
-      isFormValid =e.target.value.length > 6;
-    }
-    if (isFormValid){
-      const newuser ={...user};
-      newuser[e.target.name]=e.target.value;
-  //   setuser(newuser);
-    }
+    const optUser = {...user};
+      optUser[e.target.name] = e.target.value;
+
+      // confirming same password
+      if(e.target.name === 'confirm') {
+        if(e.target.value !== user.password) {
+          optUser.message = "Password Didn't Match";
+          setValidForm(false);
+        }
+        else {
+          optUser.message = '';
+          setValidForm(true);
+        }
+      }
+    setUser(optUser);
   }
 
-  const haldlesubmit =(e)=>{
-    if( user.email && user.password){
-      firebase.auth().signInWithEmailAndPassword(user.email,user.password)
-      .then(res =>{
-        const newuser ={...user}      
-        //   setuser(newuser);
-        //   setloguser(newuser);
-        history.replace(from);     
-      })
-      .catch(function(error) {
-        const newuser ={...user}
-        newuser.error=error.message;
-        // setuser(newuser);
-        var errorCode = error.code;
-        var errorMessage = error.message;
-      });  
+  const subForm = (e) => {
+
+    // email sign in
+    if (newUser){
+      if(validForm) {
+        firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+        .then(() => {
+          const optUser = {
+            signed: true,
+            name: user.name,
+            email: user.email,
+            message: 'Login Successful'
+          }
+          setUser(optUser);
+          updateName(user.name);
+          history.replace(from);
+        })
+        .catch(error => {
+          const optUser = {...user};
+          optUser.message = error.message;
+          setUser(optUser);
+        });
+      }
     }
-   
+
+    // update name
+    const updateName = name => {
+      const currentUser = firebase.auth().currentUser;
+      currentUser.updateProfile({displayName: name})
+      .then()
+      .catch(error => {
+          console.log(error);
+      });
+    }
+
+    // email login
+    if (!newUser) {
+      firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+      .then(result => {
+        const {displayName, email} = result.user;
+        const optUser = {
+          signed: true,
+          name: displayName,
+          email: email,
+          message: 'Login Successful'
+        }
+        setUser(optUser);
+        history.replace(from);
+      })
+      .catch(error => {
+        const optUser = {};
+        optUser.message = error.message;
+        setUser(optUser);
+      });
+    }
     e.preventDefault();
   }
 
   return (
       <section id="login">
         <Navbar />
-        <form className="form1 mt-5" onSubmit={haldlesubmit}>
+        <form className="form1 mt-5" onSubmit={subForm}>
         {/* <h5 style={{color:'red' }}>{user.error}</h5> */}
-          <h3 className="mb-4"><b>Login</b></h3>
+          <h3 className="mb-4"><b>{newUser ? 'Create Account' : 'Login'}</b></h3>
+          {
+            newUser && <div className="form-group">
+              <input onBlur={handleChange} name="name" type="text" placeholder="Your Name" className="form-control" required />
+            </div>
+          }
           <div className="form-group">
-            <input type="email" onBlur={handleChange} className="form-control"name="email" aria-describedby="emailHelp" placeholder="Your Email" required/>
+            <input type="email" onBlur={handleChange} className="form-control" name="email" aria-describedby="emailHelp" placeholder="Your Email" required/>
           </div>
           <div className="form-group">
             <input type="password" onBlur={handleChange} className="form-control" name="password" placeholder="Your Password" required/>
           </div>
-          <input type="submit" className="btn btn-block login" value="Login" />
+          {
+            newUser && <div className="form-group">
+              <input onBlur={handleChange}  type="password" name="confirm" placeholder="Confirm Password" className="form-control" required />
+            </div>
+          }
+          <input type="submit" className="btn btn-block login" value={newUser ? 'Create Account' : 'Login'} />
+          <p className="text-danger text-center mt-3">{user.message}</p>
 
-          <small className="text">Don't have an account ? <Link to="/create">Create an account</Link></small>
+          <span className="my-4 btn btn-block text-primary" onClick={()=>{
+            setNewUser(!newUser);
+            setUser({})
+          }}>{ newUser ? 'I have an account' : 'I am new here' }</span>
           <div className="text-center my-4">
             <h6><b>Or</b></h6>
           </div>

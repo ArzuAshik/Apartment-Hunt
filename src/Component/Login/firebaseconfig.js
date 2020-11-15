@@ -1,4 +1,3 @@
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyDf_iavGR0h8RgplDbdG2xnaUSvirS1cTI",
     authDomain: "apartment-hunt-c40ac.firebaseapp.com",
