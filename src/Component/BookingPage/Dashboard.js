@@ -17,7 +17,7 @@ const Dashboard = () => {
             </nav>
             <div className="row mx-0">
                 <div className="col-12 col-lg-3">
-                    <Sidebar />
+                    <Sidebar email={user.email} />
                 </div>
                 <div style={height} className="col-12 col-lg-9 right bg-light">
                     {whichType ? <Allrent /> : Display}

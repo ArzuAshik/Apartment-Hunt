@@ -13,7 +13,9 @@ const Apartments = () => {
 
     // fetching all apartment data
     useEffect(() => {
-
+        fetch('http://localhost:4000/apartment')
+        .then(res => res.json())
+        .then(data => setAllAparts(data))
     }, []);
     
     return (
@@ -22,126 +24,29 @@ const Apartments = () => {
                 <p>HOUSE RENTS</p>
                 <h2><b>Discover the latest rents <br/> available today</b></h2>
                 <div className="row mt-5">
-                    <div className="col-sm-6 col-md-4 mb-4">
-                        <div className="card border-0">
-                            <img src={house1} alt="" className="card-img-top"/>
-                            <h3 className="mt-4 mb-0"><b>Washington Avenue</b></h3>
-                            <div className="card-body px-0">
-                                <p className="text-left ml-5"><img width="15px" src={map} alt=""/> 
-                                <span className="ml-1">Nasirabad H/S , Chittagong</span></p>
-                                <div className="d-flex justify-content-start">
-                                    <p className="text-left ml-5"><img width="15px" src={bed} alt=""/> <span>2 Bedrooms</span></p>
-                                    <p className="text-left ml-5"><img width="15px" src={bath} alt=""/> <span>1 Bathroom</span></p> 
-                                </div>
-                                <div className="pt-4 d-flex justify-content-around ">
-                                    <h3 className="price"><b>$195</b></h3>
-                                    <Link className="btn px-4" to="/apartment/wash">
-                                        View Details
-                                    </Link>
-                                </div> 
-                            </div>                  
-                        </div>
-                    </div>
-                    <div className="col-sm-6 col-md-4 mb-4">
-                        <div className="card border-0">
-                            <img src={house1} alt="" className="card-img-top"/>
-                            <h3 className="mt-4 mb-0"><b>Washington Avenue</b></h3>
-                            <div className="card-body px-0">
-                                <p className="text-left ml-5"><img width="15px" src={map} alt=""/> 
-                                <span className="ml-1">Nasirabad H/S , Chittagong</span></p>
-                                <div className="d-flex justify-content-start">
-                                    <p className="text-left ml-5"><img width="15px" src={bed} alt=""/> <span>2 Bedrooms</span></p>
-                                    <p className="text-left ml-5"><img width="15px" src={bath} alt=""/> <span>1 Bathroom</span></p> 
-                                </div>
-                                <div className="pt-4 d-flex justify-content-around ">
-                                    <h3 className="price"><b>$195</b></h3>
-                                    <Link className="btn px-4" to="/apartment/wash">
-                                        View Details
-                                    </Link>
-                                </div> 
-                            </div>                  
-                        </div>
-                    </div>
-                    <div className="col-sm-6 col-md-4 mb-4">
-                        <div className="card border-0">
-                            <img src={house1} alt="" className="card-img-top"/>
-                            <h3 className="mt-4 mb-0"><b>Washington Avenue</b></h3>
-                            <div className="card-body px-0">
-                                <p className="text-left ml-5"><img width="15px" src={map} alt=""/> 
-                                <span className="ml-1">Nasirabad H/S , Chittagong</span></p>
-                                <div className="d-flex justify-content-start">
-                                    <p className="text-left ml-5"><img width="15px" src={bed} alt=""/> <span>2 Bedrooms</span></p>
-                                    <p className="text-left ml-5"><img width="15px" src={bath} alt=""/> <span>1 Bathroom</span></p> 
-                                </div>
-                                <div className="pt-4 d-flex justify-content-around ">
-                                    <h3 className="price"><b>$195</b></h3>
-                                    <Link className="btn px-4" to="/apartment/wash">
-                                        View Details
-                                    </Link>
-                                </div> 
-                            </div>                  
-                        </div>
-                    </div>
-                    <div className="col-sm-6 col-md-4 mb-4">
-                        <div className="card border-0">
-                            <img src={house1} alt="" className="card-img-top"/>
-                            <h3 className="mt-4 mb-0"><b>Washington Avenue</b></h3>
-                            <div className="card-body px-0">
-                                <p className="text-left ml-5"><img width="15px" src={map} alt=""/> 
-                                <span className="ml-1">Nasirabad H/S , Chittagong</span></p>
-                                <div className="d-flex justify-content-start">
-                                    <p className="text-left ml-5"><img width="15px" src={bed} alt=""/> <span>2 Bedrooms</span></p>
-                                    <p className="text-left ml-5"><img width="15px" src={bath} alt=""/> <span>1 Bathroom</span></p> 
-                                </div>
-                                <div className="pt-4 d-flex justify-content-around ">
-                                    <h3 className="price"><b>$195</b></h3>
-                                    <Link className="btn px-4" to="/apartment/wash">
-                                        View Details
-                                    </Link>
-                                </div> 
-                            </div>                  
-                        </div>
-                    </div>
-                    <div className="col-sm-6 col-md-4 mb-4">
-                        <div className="card border-0">
-                            <img src={house1} alt="" className="card-img-top"/>
-                            <h3 className="mt-4 mb-0"><b>Washington Avenue</b></h3>
-                            <div className="card-body px-0">
-                                <p className="text-left ml-5"><img width="15px" src={map} alt=""/> 
-                                <span className="ml-1">Nasirabad H/S , Chittagong</span></p>
-                                <div className="d-flex justify-content-start">
-                                    <p className="text-left ml-5"><img width="15px" src={bed} alt=""/> <span>2 Bedrooms</span></p>
-                                    <p className="text-left ml-5"><img width="15px" src={bath} alt=""/> <span>1 Bathroom</span></p> 
-                                </div>
-                                <div className="pt-4 d-flex justify-content-around ">
-                                    <h3 className="price"><b>$195</b></h3>
-                                    <Link className="btn px-4" to="/apartment/wash">
-                                        View Details
-                                    </Link>
-                                </div> 
-                            </div>                  
-                        </div>
-                    </div>
-                    <div className="col-sm-6 col-md-4 mb-4">
-                        <div className="card border-0">
-                            <img src={house1} alt="" className="card-img-top"/>
-                            <h3 className="mt-4 mb-0"><b>Washington Avenue</b></h3>
-                            <div className="card-body px-0">
-                                <p className="text-left ml-5"><img width="15px" src={map} alt=""/> 
-                                <span className="ml-1">Nasirabad H/S , Chittagong</span></p>
-                                <div className="d-flex justify-content-start">
-                                    <p className="text-left ml-5"><img width="15px" src={bed} alt=""/> <span>2 Bedrooms</span></p>
-                                    <p className="text-left ml-5"><img width="15px" src={bath} alt=""/> <span>1 Bathroom</span></p> 
-                                </div>
-                                <div className="pt-4 d-flex justify-content-around ">
-                                    <h3 className="price"><b>$195</b></h3>
-                                    <Link className="btn px-4" to="/apartment/wash">
-                                        View Details
-                                    </Link>
-                                </div> 
-                            </div>                  
-                        </div>
-                    </div>
+                    {
+                        allAparts.map(apartment =>
+                        <div key={apartment._id} className="col-sm-6 col-md-4 mb-4">
+                            <div className="card border-0">
+                                <img src={apartment.img} alt="" className="card-img-top"/>
+                                <h3 className="mt-4 mb-0"><b>{apartment.title}</b></h3>
+                                <div className="card-body px-0">
+                                    <p className="text-left ml-5"><img width="15px" src={map} alt=""/> 
+                                    <span className="ml-1">{apartment.location}</span></p>
+                                    <div className="d-flex justify-content-start">
+                                        <p className="text-left ml-5"><img width="15px" src={bed} alt=""/> <span>{apartment.bedroom} Bedrooms</span></p>
+                                        <p className="text-left ml-5"><img width="15px" src={bath} alt=""/> <span>{apartment.bathroom} Bathroom</span></p> 
+                                    </div>
+                                    <div className="pt-4 d-flex justify-content-around ">
+                                        <h3 className="price"><b>${apartment.price}</b></h3>
+                                        <Link className="btn px-4" to="/apartment/wash">
+                                            View Details
+                                        </Link>
+                                    </div> 
+                                </div>                  
+                            </div>
+                        </div>)
+                    }
                 </div>
             </div>
         </section>

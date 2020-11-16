@@ -11,7 +11,7 @@ import Addhouse from '../Addhouse/Addhouse';
 import { useDispatch } from 'react-redux';
 import {allBooking, addNewHouse, myBooking} from '../../../Action';
 
-const Sidebar = () => {
+const Sidebar = ({email}) => {
     const dispatch = useDispatch();
     return (
         <aside className="d-flex flex-column align-items-center py-5 px-xl-4">
@@ -19,15 +19,15 @@ const Sidebar = () => {
                 <img width="100px" src={logo} alt="" />
             </Link>
             <ul className="mt-5">                
-                <li className="btn" onClick={() => dispatch(allBooking(<Allrent />))}>
+                <li className="btn" onClick={() => dispatch(allBooking(<Allrent email={email} />))}>
                     <img width="30px" className="mb-1 mr-2" src={allrent} alt="" />
                     <span>Booking List</span>
                 </li> 
-                <li className="btn" onClick={() => dispatch(addNewHouse(<Addhouse />))}>
+                <li className="btn" onClick={() => dispatch(addNewHouse(<Addhouse email={email} />))}>
                     <img width="30px" className="mb-1 mr-2" src={addrent} alt="" />
                     <span>Add House</span> 
                 </li>
-                <li className="btn" onClick={() => dispatch(myBooking(<Myrent />))}>
+                <li className="btn" onClick={() => dispatch(myBooking(<Myrent email={email} />))}>
                     <img width="30px" className="mb-1 mr-2" src={myrent} alt="" />
                     <span>My Rent</span>
                 </li>

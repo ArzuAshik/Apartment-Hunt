@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-function Myrent() {
+function Myrent({email}) {
     const [myRent, setMyRent] = useState([]);
 
     // fetching my rent data
@@ -8,7 +8,7 @@ function Myrent() {
         fetch('')
         .then(res => res.json())
         .then(data => setMyRent(data))
-    }, []);
+    }, [email]);
 
     return (
     <section>
