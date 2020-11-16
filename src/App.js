@@ -41,7 +41,7 @@ function App() {
               <Footer />
             </Route>
             <Route path="/login" component={Login} />
-            <Route path="/apartment/:name" component={Details} />
+            <Route path="/apartment/:id" component={Details} />
             {/* <PrivateRoute path="/dashboard"> */}
               <Dashboard />
             {/* </PrivateRoute> */}

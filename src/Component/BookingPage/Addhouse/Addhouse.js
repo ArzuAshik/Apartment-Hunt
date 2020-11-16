@@ -13,17 +13,14 @@ function Addhouse({email}) {
 
   // adding new house to database
   function addNew() {
-    fetch('http://localhost:4000/addApartment', {
-      method: 'POST',
+    fetch("https://apartment-hunt-server.herokuapp.com/apartment", {
+      method: "POST",
       headers: {'Content-type': 'application/json'},
       body: JSON.stringify(newHouse)
     })
-    .then(res => res.json())
-    .then(data => {
-      if(data) {
-        document.getElementById('addhouseform').reset();
-        document.getElementById('success').innerHTML = "Added Successfully"
-      }
+    .then(() => {
+      document.getElementById('addhouseform').reset();
+      document.getElementById('success').innerHTML = "Added Successfully"
     });
   }
   

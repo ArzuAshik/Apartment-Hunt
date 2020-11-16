@@ -5,11 +5,10 @@ function Myrent({email}) {
 
     // fetching my rent data
     useEffect(() => {
-        fetch('')
-        .then(res => res.json())
-        .then(data => setMyRent(data))
+        
     }, [email]);
 
+    console.log(myRent);
     return (
     <section>
         <div className="mt-3 container-fluid row">

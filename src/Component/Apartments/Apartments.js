@@ -13,7 +13,7 @@ const Apartments = () => {
 
     // fetching all apartment data
     useEffect(() => {
-        fetch('http://localhost:4000/apartment')
+        fetch('https://apartment-hunt-server.herokuapp.com/apartment')
         .then(res => res.json())
         .then(data => setAllAparts(data))
     }, []);
@@ -39,7 +39,7 @@ const Apartments = () => {
                                     </div>
                                     <div className="pt-4 d-flex justify-content-around ">
                                         <h3 className="price"><b>${apartment.price}</b></h3>
-                                        <Link className="btn px-4" to="/apartment/wash">
+                                        <Link className="btn px-4" to={`/apartment/${apartment._id}`}>
                                             View Details
                                         </Link>
                                     </div> 
