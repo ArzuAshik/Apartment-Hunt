@@ -32,7 +32,8 @@ const Details = () => {
     function bookApart(e) {
         e.preventDefault();
         
-        fetch('https://apartment-hunt-server.herokuapp.com/booking-request', {
+        fetch('https://apartment-hunt-server.herokuapp.com/booking-request',
+        {
             method: 'POST',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({...book, ownerEmail: apart.ownerEmail})

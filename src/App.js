@@ -42,9 +42,9 @@ function App() {
             </Route>
             <Route path="/login" component={Login} />
             <Route path="/apartment/:id" component={Details} />
-            {/* <PrivateRoute path="/dashboard"> */}
+            <PrivateRoute path="/dashboard">
               <Dashboard />
-            {/* </PrivateRoute> */}
+            </PrivateRoute>
           </Switch>
         </Router>
       </Provider>

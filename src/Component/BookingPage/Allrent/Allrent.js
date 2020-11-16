@@ -15,7 +15,20 @@ function OrderMain({email}) {
         .then(bookings => setAllBooking(bookings));
     }, [email]);
 
-    console.log(allBooking);
+    // changing status
+    function statusChange(id) {
+        fetch("https://apartment-hunt-server.herokuapp.com/bookings",
+        {
+            method: "PATCH",
+            headers: {"Content-type": "application/json; charset=UTF-8"},
+            body: JSON.stringify({
+                id: id,
+                status: 1,
+            })
+        })
+        .then(response => response.json())
+        .then(result => console.log(result));
+    }
 
     return (
         <section>
@@ -25,7 +38,7 @@ function OrderMain({email}) {
                     <th scope="col">Name</th>
                     <th scope="col">Phone</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Message</th>
+                    <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +48,12 @@ function OrderMain({email}) {
                             <td>{book.name}</td>
                             <td>{book.phone}</td>
                             <td>{book.email}</td>
-                            <td>{book.message}</td>
+                            <td>
+                                <select className="form-control" onChange={() => statusChange(book._id)} name="status">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                </select>
+                            </td>
                         </tr>
                         )
                     }
