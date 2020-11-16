@@ -26,18 +26,18 @@ const Apartments = () => {
                 <div className="row mt-5">
                     {
                         allAparts.map(apartment =>
-                        <div key={apartment._id} className="col-sm-6 col-md-4 mb-4">
+                        <div key={apartment._id} className="col-sm-6 col-md-6 col-lg-4 mb-4">
                             <div className="card border-0">
                                 <img src={apartment.img} alt="" className="card-img-top"/>
-                                <h3 className="mt-4 mb-0"><b>{apartment.title}</b></h3>
-                                <div className="card-body px-0">
-                                    <p className="text-left ml-5"><img width="15px" src={map} alt=""/> 
+                                <div className="card-body px-1">
+                                <h3 className="my-1"><b>{apartment.title}</b></h3>
+                                    <p className="m-0"><img width="15px" src={map} alt=""/> 
                                     <span className="ml-1">{apartment.location}</span></p>
-                                    <div className="d-flex justify-content-start">
-                                        <p className="text-left ml-5"><img width="15px" src={bed} alt=""/> <span>{apartment.bedroom} Bedrooms</span></p>
-                                        <p className="text-left ml-5"><img width="15px" src={bath} alt=""/> <span>{apartment.bathroom} Bathroom</span></p> 
+                                    <div className="d-flex justify-content-around mt-4">
+                                        <p><img width="15px" src={bed} alt=""/> <span>{apartment.bedroom} Bedrooms</span></p>
+                                        <p><img width="15px" src={bath} alt=""/> <span>{apartment.bathroom} Bathroom</span></p> 
                                     </div>
-                                    <div className="pt-4 d-flex justify-content-around ">
+                                    <div className="d-flex justify-content-around ">
                                         <h3 className="price"><b>${apartment.price}</b></h3>
                                         <Link className="btn px-4" to={`/apartment/${apartment._id}`}>
                                             View Details

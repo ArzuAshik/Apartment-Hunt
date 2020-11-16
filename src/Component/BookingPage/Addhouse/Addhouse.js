@@ -36,7 +36,7 @@ function Addhouse({email}) {
             </div>
             <div className="col mb-4">
               <label>Price</label>
-              <input type="number" className="form-control" placeholder="Price" name="price" onBlur={handleChange}/>
+              <input type="text" className="form-control" placeholder="Price" name="price" onBlur={handleChange}/>
             </div>
           </div>
           <div className="row">
@@ -46,13 +46,13 @@ function Addhouse({email}) {
             </div>
             <div className="col mb-4">
               <label>No. of Bedroom</label>
-              <input type="number" className="form-control" placeholder="No. of Bedroom" name="bedroom" onBlur={handleChange} />
+              <input type="text" className="form-control" placeholder="No. of Bedroom" name="bedroom" onBlur={handleChange} />
             </div>
           </div>
           <div className="row">
             <div className="col mb-4">
               <label>No. of Bathroom</label>
-              <input type="number" className="form-control" placeholder="No. of Bathroom" name="bathroom" onBlur={handleChange} />
+              <input type="text" className="form-control" placeholder="No. of Bathroom" name="bathroom" onBlur={handleChange} />
             </div>
             <div className="col mb-4">
               <label>Thumbnail Link</label>

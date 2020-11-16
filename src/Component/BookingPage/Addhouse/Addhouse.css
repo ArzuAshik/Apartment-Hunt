@@ -9,7 +9,7 @@
 #dashboard form.form {
   margin: 30px auto;
   padding: 2rem;
-  max-width: 40rem;
+  /* max-width: 40rem; */
   background: white;
   border: none;
   border-radius: 20px;
@@ -21,6 +21,6 @@
 }
 
 #dashboard form.form button {
-  background-color: #275A53;
+  background-color: #275a53;
 }
 /*# sourceMappingURL=Addhouse.css.map */
