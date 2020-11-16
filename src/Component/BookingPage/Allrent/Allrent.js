@@ -1,29 +1,42 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useContext, useEffect } from 'react';
+import { useState } from 'react';
+import { UserContext } from '../../../App';
 
 function OrderMain({email}) {
     const [allBooking, setAllBooking] = useState([]);
+    const [user] = useContext(UserContext);
+
+    const [loading, setLoading] = useState(true);
+    const statusStyle = [
+        {color: "red"},
+        {color: "orange"},
+        {color: "green"}
+    ]
 
     // fetching all booking data
     useEffect(() => {
         fetch("https://apartment-hunt-server.herokuapp.com/bookings", {
             method: "POST",
-            body: JSON.stringify({ ownerEmail: email }),
+            body: JSON.stringify({ ownerEmail: user.email }),
             headers: { "Content-type": "application/json; charset=UTF-8" }
         })
         .then((response) => response.json())
-        .then(bookings => setAllBooking(bookings));
-    }, [email]);
+        .then(bookings => {
+            setAllBooking(bookings);
+            setLoading(false);
+        });
+    }, [loading]);
 
     // changing status
-    function statusChange(id) {
+    function statusChange(id, e) {
+        setLoading(true)
         fetch("https://apartment-hunt-server.herokuapp.com/bookings",
         {
             method: "PATCH",
             headers: {"Content-type": "application/json; charset=UTF-8"},
             body: JSON.stringify({
                 id: id,
-                status: 1,
+                status: e.target.value,
             })
         })
         .then(response => response.json())
@@ -49,9 +62,10 @@ function OrderMain({email}) {
                             <td>{book.phone}</td>
                             <td>{book.email}</td>
                             <td>
-                                <select className="form-control" onChange={() => statusChange(book._id)} name="status">
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
+                                <select value={book.status} style={statusStyle[book.status]} className="form-control" onChange={(e) => statusChange(book._id, e)} name="status">
+                                    <option value="0" style={statusStyle[0]}>Pending</option>
+                                    <option value="1" style={statusStyle[1]}>On Going</option>
+                                    <option value="2" style={statusStyle[2]}>Done</option>
                                 </select>
                             </td>
                         </tr>
