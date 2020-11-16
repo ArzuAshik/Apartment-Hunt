@@ -23,7 +23,7 @@ const Sidebar = ({email}) => {
                     <img width="30px" className="mb-1 mr-2" src={allrent} alt="" />
                     <span>Booking List</span>
                 </li> 
-                <li className="btn" onClick={() => dispatch(addNewHouse(<Addhouse email={email} />))}>
+                <li className="btn d-block" onClick={() => dispatch(addNewHouse(<Addhouse email={email} />))}>
                     <img width="30px" className="mb-1 mr-2" src={addrent} alt="" />
                     <span>Add House</span> 
                 </li>
