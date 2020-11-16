@@ -89,7 +89,7 @@ const Details = () => {
                             <input onBlur={handleChange} name="name" type="text" placeholder={user.name || "Name"} className="form-control my-3" required />
                             <input onBlur={handleChange} name="phone" type="tel" placeholder="Phone" className="form-control my-3" required />
                             <input onBlur={handleChange} name="email" type="email" placeholder="Email" className="form-control my-3" required />
-                            <textarea onBlur={handleChange} name="message" cols="30" rows="5" placeholder="Message" className="form-control my-3" required></textarea>
+                            <textarea onBlur={handleChange} name="msg" cols="30" rows="5" placeholder="Message" className="form-control my-3" required></textarea>
                             {
                                 user.signed ? 
                                 <button className="btn btn-block" type="submit">Request Booking</button> :
