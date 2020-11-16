@@ -31,8 +31,6 @@ const Details = () => {
     // booking apartment
     function bookApart(e) {
         e.preventDefault();
-
-        console.log({...book, ownerEmail: apart.ownerEmail});
         
         fetch('https://apartment-hunt-server.herokuapp.com/booking-request',
         {
