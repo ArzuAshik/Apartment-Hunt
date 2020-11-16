@@ -31,8 +31,10 @@ const Details = () => {
     // booking apartment
     function bookApart(e) {
         e.preventDefault();
+
+        console.log({...book, ownerEmail: apart.ownerEmail});
         
-        fetch('https://apartment-hunt-server.herokuapp.com/booking-request',
+        fetch('http://localhost:4000/booking-request',
         {
             method: 'POST',
             headers: {'Content-type': 'application/json'},
@@ -89,12 +91,12 @@ const Details = () => {
                             <input onBlur={handleChange} name="name" type="text" placeholder={user.name || "Name"} className="form-control my-3" required />
                             <input onBlur={handleChange} name="phone" type="tel" placeholder="Phone" className="form-control my-3" required />
                             <input onBlur={handleChange} name="email" type="email" placeholder="Email" className="form-control my-3" required />
-                            <textarea onBlur={handleChange} name="message" cols="30" rows="5" placeholder="Message" className="form-control my-3" required></textarea>
-                            {
-                                user.signed ? 
+                            <textarea onBlur={handleChange} name="msg" cols="30" rows="5" placeholder="Message" className="form-control my-3" required></textarea>
+                            {/* {
+                                user.signed ?  */}
                                 <button className="btn btn-block" type="submit">Request Booking</button> :
-                                <Link className="btn btn-info btn-block" to="/login">Login to Book</Link>
-                            }
+                                {/* <Link className="btn btn-info btn-block" to="/login">Login to Book</Link>
+                            } */}
                         </form>
                     </div>
                 </div>
