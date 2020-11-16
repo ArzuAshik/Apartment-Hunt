@@ -8,23 +8,26 @@ import myrent from '../../../images/myrent.png';
 import Myrent from '../Myrent/Myrent';
 import Allrent from '../Allrent/Allrent';
 import Addhouse from '../Addhouse/Addhouse';
+import { useDispatch } from 'react-redux';
+import {allBooking, addNewHouse, myBooking} from '../../../Action';
 
-const Sidebar = ({setDisplay}) => {
+const Sidebar = () => {
+    const dispatch = useDispatch();
     return (
         <aside className="d-flex flex-column align-items-center py-5 px-xl-4">
             <Link to="/">
                 <img width="100px" src={logo} alt="" />
             </Link>
             <ul className="mt-5">                
-                <li className="btn" onClick={() => setDisplay(<Allrent />)}>
+                <li className="btn" onClick={() => dispatch(allBooking(<Allrent />))}>
                     <img width="30px" className="mb-1 mr-2" src={allrent} alt="" />
                     <span>Booking List</span>
                 </li> 
-                <li className="btn" onClick={() => setDisplay(<Addhouse />)}>
+                <li className="btn" onClick={() => dispatch(addNewHouse(<Addhouse />))}>
                     <img width="30px" className="mb-1 mr-2" src={addrent} alt="" />
                     <span>Add House</span> 
                 </li>
-                <li className="btn" onClick={() => setDisplay(<Myrent />)}>
+                <li className="btn" onClick={() => dispatch(myBooking(<Myrent />))}>
                     <img width="30px" className="mb-1 mr-2" src={myrent} alt="" />
                     <span>My Rent</span>
                 </li>

@@ -11,7 +11,13 @@ import Navbar from './Component/Navbar/Navbar';
 import PrivateRoute from './Component/Login/PrivateRoute';
 import Login from './Component/Login/Login';
 import Dashboard from './Component/BookingPage/Dashboard';
+import { createStore } from 'redux';
+import allReducers from './Reducers/CombineReducers';
+import { Provider } from 'react-redux';
 export const UserContext = createContext();
+
+// Store => Global State
+let store = createStore(allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 function App() {
   const [user, setUser] = useState({
@@ -24,24 +30,26 @@ function App() {
 
   return (
     <UserContext.Provider value={[user, setUser]}>
-      <Router>
-        <Switch>
-          <Route path="/" exact>
-            <Navbar />
-            <Header />
-            <Apartments />
-            <Services />
-            <Footer />
-          </Route>
-          <Route path="/login" component={Login} />
-          <PrivateRoute path="/apartment/:name">
-            <Details />
-          </PrivateRoute>
-          {/* <PrivateRoute path="/dashboard"> */}
-            <Dashboard />
-          {/* </PrivateRoute> */}
-        </Switch>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Switch>
+            <Route path="/" exact>
+              <Navbar />
+              <Header />
+              <Apartments />
+              <Services />
+              <Footer />
+            </Route>
+            <Route path="/login" component={Login} />
+            <PrivateRoute path="/apartment/:name">
+              <Details />
+            </PrivateRoute>
+            {/* <PrivateRoute path="/dashboard"> */}
+              <Dashboard />
+            {/* </PrivateRoute> */}
+          </Switch>
+        </Router>
+      </Provider>
     </UserContext.Provider>
   );
 }

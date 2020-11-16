@@ -12,12 +12,14 @@ function Addhouse() {
   } 
 
   // adding new house to database
-  fetch('', {
-    method: 'POST',
-    body: JSON.stringify(newHouse)
-  })
-  .then(res => res.json())
-  .then(data => console.log(data));
+  function addNew() {
+    fetch('', {
+      method: 'POST',
+      body: JSON.stringify(newHouse)
+    })
+    .then(res => res.json())
+    .then(data => console.log(data));
+  }
   
   return (
     <section>
@@ -50,11 +52,11 @@ function Addhouse() {
               <input type="number" className="form-control" placeholder="No of Bathroom" name="bathroom" onBlur={handleChange} />
             </div>
             <div className="col mb-4">
-              <label>Thumbnail</label>
-              <input type="file" placeholder="File" name="photo" onBlur={handleChange} />
+              <label>Thumbnail Link</label>
+              <input type="url" className="form-control" placeholder="Photo Link" name="photo" onBlur={handleChange} />
             </div>
           </div>
-          <button type="button" className="btn px-3 text-white">Submit</button>
+          <button type="button" className="btn px-3 text-white" onClick={addNew}>Submit</button>
         </form>
       </div>
     </section>
