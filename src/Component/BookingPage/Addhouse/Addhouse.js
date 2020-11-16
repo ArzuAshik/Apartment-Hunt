@@ -42,14 +42,14 @@ function Addhouse() {
               <input type="text" className="form-control" placeholder="Location" name="location" onBlur={handleChange} />
             </div>
             <div className="col mb-4">
-              <label>No of Bedroom</label>
-              <input type="number" className="form-control" placeholder="No of Bedroom" name="bedroom" onBlur={handleChange} />
+              <label>No. of Bedroom</label>
+              <input type="number" className="form-control" placeholder="No. of Bedroom" name="bedroom" onBlur={handleChange} />
             </div>
           </div>
           <div className="row">
             <div className="col mb-4">
-              <label>No of Bathroom</label>
-              <input type="number" className="form-control" placeholder="No of Bathroom" name="bathroom" onBlur={handleChange} />
+              <label>No. of Bathroom</label>
+              <input type="number" className="form-control" placeholder="No. of Bathroom" name="bathroom" onBlur={handleChange} />
             </div>
             <div className="col mb-4">
               <label>Thumbnail Link</label>

@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import './Details.css'
 import sub1 from '../../images/sub1.png';
 import sub2 from '../../images/sub2.png';
 import sub3 from '../../images/sub3.png';
 import sub4 from '../../images/sub4.png';
+import { UserContext } from '../../App';
 
 const Details = ({ id }) => {
     const { name } = useParams();
+    const [user] = useContext(UserContext);
     const [apart, setApart] = useState({});
+    const [book, setBook] = useState({});
 
     // fetching single apartment details
     useEffect(() => {
@@ -17,6 +20,25 @@ const Details = ({ id }) => {
         .then(res => res.json())
         .then(data => setApart(data))
     }, [id]);
+
+    // handling change
+    function handleChange(e) {
+        const optBook = {...book};
+        optBook[e.target.name] = e.target.value;
+        setBook(optBook);
+    } 
+
+    // booking apartment
+    function bookApart(e) {
+        e.preventDefault();
+        
+        fetch('', {
+            method: 'POST',
+            body: JSON.stringify(book)
+        })
+        .then(res => res.json())
+        .then(data => console.log(data));
+    }
 
     return (
         <section id="details">
@@ -59,12 +81,16 @@ const Details = ({ id }) => {
                     </div>
                     <div className="col-md-4 mt-5 mt-md-0">
                         <h3 className="text-center mb-3"><b>Book Now</b></h3>
-                        <form action="" className="bg-light p-4">
-                            <input name="name" type="text" placeholder="Name" className="form-control my-3" required />
-                            <input name="phone" type="tel" placeholder="Phone" className="form-control my-3" required />
-                            <input name="email" type="email" placeholder="Email" className="form-control my-3" required />
-                            <textarea name="message" cols="30" rows="5" placeholder="Message" className="form-control my-3" required></textarea>
-                            <button className="btn btn-block" type="submit">Request Booking</button>
+                        <form onSubmit={bookApart} className="bg-light p-4">
+                            <input onBlur={handleChange} name="name" type="text" placeholder="Name" className="form-control my-3" required />
+                            <input onBlur={handleChange} name="phone" type="tel" placeholder="Phone" className="form-control my-3" required />
+                            <input onBlur={handleChange} name="email" type="email" placeholder="Email" className="form-control my-3" required />
+                            <textarea onBlur={handleChange} name="message" cols="30" rows="5" placeholder="Message" className="form-control my-3" required></textarea>
+                            {
+                                user.signed ? 
+                                <button className="btn btn-block" type="submit">Request Booking</button> :
+                                <Link className="btn btn-info btn-block" to="/login">Login to Book</Link>
+                            }
                         </form>
                     </div>
                 </div>
