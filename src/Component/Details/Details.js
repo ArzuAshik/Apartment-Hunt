@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import './Details.css'
@@ -7,8 +7,16 @@ import sub2 from '../../images/sub2.png';
 import sub3 from '../../images/sub3.png';
 import sub4 from '../../images/sub4.png';
 
-const Details = () => {
+const Details = ({ id }) => {
     const { name } = useParams();
+    const [apart, setApart] = useState({});
+
+    // fetching single apartment details
+    useEffect(() => {
+        fetch('')
+        .then(res => res.json())
+        .then(data => setApart(data))
+    }, [id]);
 
     return (
         <section id="details">

@@ -5,8 +5,17 @@ import bed from '../../images/bed.png';
 import bath from '../../images/bath.png';
 import map from '../../images/map.png';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const Apartments = () => {
+    const [allAparts, setAllAparts] = useState([]);
+
+    // fetching all apartment data
+    useEffect(() => {
+
+    }, []);
+    
     return (
         <section id="apartments" className="text-center py-5">
             <div className="container">

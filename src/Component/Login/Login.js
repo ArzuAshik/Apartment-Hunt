@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import firebase from 'firebase';
+import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from './firebaseconfig';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import google from '../../images/google.png';
 import fb from '../../images/fbIcon.png';
 import "./Login.css";
@@ -10,17 +10,19 @@ import { UserContext } from '../../App';
 import Navbar from '../Navbar/Navbar';
 
 function Login() {
-  if(firebase.apps.length ===0){
+
+  // initializing app with condition
+  if(firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig);
   }
-
+    
   const [user, setUser] = useContext(UserContext);
   const [newUser, setNewUser] = useState(false);
   const [validForm, setValidForm] = useState(true);
   const provider = new firebase.auth.GoogleAuthProvider();
   const fbprovider = new firebase.auth.FacebookAuthProvider();
   const history = useHistory();
-  const location= useLocation();
+  const location = useLocation();
   const { from } = location.state || { from: { pathname: "/" } };
 
 
@@ -66,7 +68,7 @@ function Login() {
     });
   }
 
-  // Email Password Login
+  // Email Password Login / Sign in
   const handleChange=(e)=>{
     const optUser = {...user};
       optUser[e.target.name] = e.target.value;
@@ -110,16 +112,6 @@ function Login() {
       }
     }
 
-    // update name
-    const updateName = name => {
-      const currentUser = firebase.auth().currentUser;
-      currentUser.updateProfile({displayName: name})
-      .then()
-      .catch(error => {
-          console.log(error);
-      });
-    }
-
     // email login
     if (!newUser) {
       firebase.auth().signInWithEmailAndPassword(user.email, user.password)
@@ -142,12 +134,19 @@ function Login() {
     }
     e.preventDefault();
   }
+  
+  // update name
+  const updateName = name => {
+    const currentUser = firebase.auth().currentUser;
+    currentUser.updateProfile({displayName: name})
+    .then()
+    .catch(error => console.log(error))
+  }
 
   return (
       <section id="login">
         <Navbar />
         <form className="form1 mt-5" onSubmit={subForm}>
-        {/* <h5 style={{color:'red' }}>{user.error}</h5> */}
           <h3 className="mb-4"><b>{newUser ? 'Create Account' : 'Login'}</b></h3>
           {
             newUser && <div className="form-group">
