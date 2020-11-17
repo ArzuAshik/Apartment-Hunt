@@ -2,10 +2,9 @@ import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { UserContext } from '../../../App';
 
-function OrderMain({email}) {
+function OrderMain() {
     const [allBooking, setAllBooking] = useState([]);
     const [user] = useContext(UserContext);
-
     const [loading, setLoading] = useState(true);
     const statusStyle = [
         {color: "red"},
@@ -25,7 +24,8 @@ function OrderMain({email}) {
             setAllBooking(bookings);
             setLoading(false);
         });
-    }, [loading]);
+    }, [loading, user.email]);
+
 
     // changing status
     function statusChange(id, e) {
@@ -40,39 +40,41 @@ function OrderMain({email}) {
             })
         })
         .then(response => response.json())
-        .then(result => console.log(result));
+        .then(result => setAllBooking(result));
     }
 
     return (
         <section>
-            <table className="table">
-                <thead>
-                    <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        allBooking.map(book =>
-                        <tr key={book._id}>
-                            <td>{book.name}</td>
-                            <td>{book.phone}</td>
-                            <td>{book.email}</td>
-                            <td>
-                                <select value={book.status} style={statusStyle[book.status]} className="form-control" onChange={(e) => statusChange(book._id, e)} name="status">
-                                    <option value="0" style={statusStyle[0]}>Pending</option>
-                                    <option value="1" style={statusStyle[1]}>On Going</option>
-                                    <option value="2" style={statusStyle[2]}>Done</option>
-                                </select>
-                            </td>
+            {
+                allBooking.length !== 0 &&
+                <table className="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Status</th>
                         </tr>
-                        )
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {
+                            allBooking.map(book =>
+                            <tr key={book._id}>
+                                <td>{book.name}</td>
+                                <td>{book.phone}</td>
+                                <td>{book.email}</td>
+                                <td>
+                                    <select value={book.status} style={statusStyle[book.status]} className="form-control" onChange={(e) => statusChange(book._id, e)} name="status">
+                                        <option value="0" style={statusStyle[0]}>Pending</option>
+                                        <option value="1" style={statusStyle[1]}>On Going</option>
+                                        <option value="2" style={statusStyle[2]}>Done</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table> 
+            }
         </section>
     )
 }

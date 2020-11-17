@@ -36,14 +36,14 @@ const Details = () => {
         {
             method: 'POST',
             headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({...book, ownerEmail: apart.ownerEmail})
+            body: JSON.stringify({...book, ownerEmail: apart.ownerEmail, houseName: apart.title, price: apart.price, houseId: apart._id})
         })
-        .then(() => {
+        .then(result => {
+            console.log(result)
             document.getElementById('bookingForm').innerHTML = '<h3 class="text-success"><b>Thanks for booking!</b></h3>';
         })
-        .catch(err => console.log(err));
     }
-
+    
     return (
         <section id="details">
             <Navbar />

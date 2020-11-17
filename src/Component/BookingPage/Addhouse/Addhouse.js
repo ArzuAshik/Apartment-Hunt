@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./Addhouse.css";
 
-function Addhouse({email}) {
+function Addhouse({ email }) {
   const [newHouse, setNewHouse] = useState({ownerEmail : email});
   
   // handling change
