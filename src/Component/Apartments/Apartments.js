@@ -36,7 +36,7 @@ const Apartments = ({ keyword }) => {
                     {
                         apartments.length ? 
                         <SearchResult locations={apartments} /> : <SearchResult locations={allAparts} />
-                        }
+                    }
                 </div>
             </div>
         </section>
