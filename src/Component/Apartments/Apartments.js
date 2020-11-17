@@ -1,6 +1,5 @@
 import React from 'react';
 import './Apartments.css';
-import house1 from '../../images/house1.png';
 import bed from '../../images/bed.png';
 import bath from '../../images/bath.png';
 import map from '../../images/map.png';
@@ -27,13 +26,13 @@ const Apartments = () => {
                     {
                         allAparts.map(apartment =>
                         <div key={apartment._id} className="col-sm-6 col-md-6 col-lg-4 mb-4">
-                            <div className="card border-0">
+                            <div className="card h-100 border-0">
                                 <img src={apartment.img} alt="" className="card-img-top"/>
                                 <div className="card-body px-1">
                                 <h3 className="my-1"><b>{apartment.title}</b></h3>
-                                    <p className="m-0"><img width="15px" src={map} alt=""/> 
+                                    <p className="mt-3"><img width="15px" src={map} alt=""/> 
                                     <span className="ml-1">{apartment.location}</span></p>
-                                    <div className="d-flex justify-content-around mt-4">
+                                    <div className="d-flex justify-content-around">
                                         <p><img width="15px" src={bed} alt=""/> <span>{apartment.bedroom} Bedrooms</span></p>
                                         <p><img width="15px" src={bath} alt=""/> <span>{apartment.bathroom} Bathroom</span></p> 
                                     </div>

@@ -11,9 +11,10 @@ function OrderMain({email}) {
             body: JSON.stringify({ ownerEmail: email }),
             headers: { "Content-type": "application/json; charset=UTF-8" }
         })
-        .then((response) => response.json())
+        .then(response => response.json())
         .then(bookings => setAllBooking(bookings));
     }, [email]);
+
 
     // changing status
     function statusChange(id) {
@@ -30,6 +31,7 @@ function OrderMain({email}) {
         .then(result => console.log(result));
     }
 
+    console.log(allBooking)
     return (
         <section>
             <table className="table">
@@ -49,9 +51,9 @@ function OrderMain({email}) {
                             <td>{book.phone}</td>
                             <td>{book.email}</td>
                             <td>
-                                <select className="form-control" onChange={() => statusChange(book._id)} name="status">
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
+                                <select className="form-control" onChange={() => statusChange(book._id)} name="status" value={book.status}>
+                                    <option >0</option>
+                                    <option>1</option>
                                 </select>
                             </td>
                         </tr>
