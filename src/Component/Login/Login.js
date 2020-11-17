@@ -9,13 +9,12 @@ import "./Login.css";
 import { UserContext } from '../../App';
 import Navbar from '../Navbar/Navbar';
 
-function Login() {
+// initializing app with condition
+if(firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig);
+}
 
-  // initializing app with condition
-  if(firebase.apps.length === 0) {
-    firebase.initializeApp(firebaseConfig);
-  }
-    
+function Login() {
   const [user, setUser] = useContext(UserContext);
   const [newUser, setNewUser] = useState(false);
   const [validForm, setValidForm] = useState(true);
@@ -50,7 +49,7 @@ function Login() {
   // Facbook Login
   const fblogin = () => {
     firebase.auth().signInWithPopup(fbprovider)
-    .then(function(result) {
+    .then(result => {
       const {displayName, email} = result.user;
       const optUser = {
         signed: true,
