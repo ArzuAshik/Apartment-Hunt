@@ -3,10 +3,11 @@ import './Header.css';
 
 function Header({ setKeyword }) {
 
-  // handling change
-  function searchLocation(e) {
-    e.preventDefault();
-    setKeyword(e.target.value);
+  // handling submit
+  function handleSubmit(e) {
+    const search = document.getElementById('search');
+    setKeyword(search.value)
+    e.preventDefault(e)
   }
 
   return (
@@ -16,8 +17,8 @@ function Header({ setKeyword }) {
       </div> 
       <div>
         <br/>
-        <form className="form-inline my-5 my-lg-0">
-          <input onBlur={searchLocation} className="input form-control mr-sm-2" type="search" placeholder="Search Location" aria-label="Search"/>
+        <form onSubmit={handleSubmit} className="form-inline my-5 my-lg-0">
+          <input id="search" className="input form-control mr-sm-2" type="search" placeholder="Search Location" aria-label="Search"/>
           <button className="btn text-white px-4 my-2 my-sm-0">Find Now</button>
         </form>
       </div>
