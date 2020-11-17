@@ -7,7 +7,7 @@ import yt from '../../images/yt.png';
 
 const Footer = () => {
     return (
-        <footer className="pt-5 pb-3">
+        <footer id="footer" className="pt-5 pb-3">
             <div className="container">
                 <div className="row">
                     <div className="col-md-4 mb-4">

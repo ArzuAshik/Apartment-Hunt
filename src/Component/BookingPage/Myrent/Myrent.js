@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 
-function Myrent({email}) {
+function Myrent({ email }) {
     const [myRent, setMyRent] = useState([]);
 
     // loading my rents
     useEffect(() => {
-        fetch('https://apartment-hunt-server.herokuapp.com/bookings',
+        fetch('https://apartment-hunt-server.herokuapp.com/my-bookings',
         {
             method: "POST",
-            body: JSON.stringify({ ownerEmail: email }),
+            body: JSON.stringify({ email: email }),
             headers: { "Content-type": "application/json; charset=UTF-8" }
         })
         .then(res => res.json())
         .then(data => setMyRent(data))
     }, [email])
 
+    console.log(myRent)
     return (
     <section>
-        <table className="table">
+        <table className="table text-center">
             <thead>
                 <tr>
                     <th scope="col">Name</th>
+                    <th scope="col">House</th>
                     <th scope="col">Price</th>
                     <th scope="col">Details</th>
                 </tr>
@@ -30,8 +33,11 @@ function Myrent({email}) {
                     myRent.map(book =>
                     <tr key={book._id}>
                         <td>{book.name}</td>
+                        <td>{book.houseName}</td>
                         <td>{book.price}</td>
-                        <td>{book.email}</td>
+                        <td>
+                            <Link to={`apartment/${book.houseId}`} className="btn btn-info">View Details</Link>
+                        </td>
                     </tr>)
                 }
                 </tbody>
