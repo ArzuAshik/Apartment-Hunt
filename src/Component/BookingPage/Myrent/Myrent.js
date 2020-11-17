@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Myrent({ email }) {
     const [myRent, setMyRent] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     // loading my rents
     useEffect(() => {
@@ -13,13 +14,13 @@ function Myrent({ email }) {
             headers: { "Content-type": "application/json; charset=UTF-8" }
         })
         .then(res => res.json())
-        .then(data => setMyRent(data))
+        .then(data => {setMyRent(data); setLoading(false);})
     }, [email])
 
     return (
         <section>
             {
-                myRent.length === 0 &&
+                loading &&
                 <div className="pt-5 mt-5 d-flex justify-content-center">
                     <div className="spinner-border" role="status">
                         <span className="sr-only">Loading...</span>
@@ -27,7 +28,7 @@ function Myrent({ email }) {
                 </div>
             }
             {
-                myRent.length !== 0 &&
+                myRent.length !== 0 ?
                 <table className="table text-center">
                     <thead>
                         <tr>
@@ -51,6 +52,8 @@ function Myrent({ email }) {
                     }
                     </tbody>
                 </table>
+                :
+                !loading && <h2 className="text-center mt-3">You Have No Rent!</h2>
             }
         </section>
     )

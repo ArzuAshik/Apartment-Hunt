@@ -12,7 +12,7 @@ const Details = () => {
     const { id } = useParams();
     const [user] = useContext(UserContext);
     const [apart, setApart] = useState({});
-    const [book, setBook] = useState({});
+    const [book, setBook] = useState({name: user.name, email: user.email});
 
     // fetching single apartment details
     useEffect(() => {
@@ -85,17 +85,20 @@ const Details = () => {
                     </div>
                     <div className="col-md-4 mt-5 mt-md-0">
                         <h3 className="text-center mb-3"><b>Book Now</b></h3>
-                        <form id="bookingForm" onSubmit={bookApart} className="bg-light p-4">
-                            <input onBlur={handleChange} name="name" type="text" placeholder={user.name || "Name"} className="form-control my-3" required />
-                            <input onBlur={handleChange} name="phone" type="tel" placeholder="Phone" className="form-control my-3" required />
-                            <input onBlur={handleChange} name="email" type="email" placeholder="Email" className="form-control my-3" required />
-                            <textarea onBlur={handleChange} name="msg" cols="30" rows="5" placeholder="Message" className="form-control my-3" required></textarea>
-                            {
-                                user.signed ? 
-                                <button className="btn btn-block" type="submit">Request Booking</button> :
+                        {
+                            user.signed ?                        
+                            <form id="bookingForm" onSubmit={bookApart} className="bg-light p-4">
+                                <input readonly name="name" type="text" value={user.name} placeholder={"Name"} className="form-control my-3" required />
+                                <input onBlur={handleChange} name="phone" type="tel" placeholder="Phone" className="form-control my-3" required />
+                                <input readonly name="email" type="email" value={user.email} placeholder="Email" className="form-control my-3" required />
+                                <textarea onBlur={handleChange} name="msg" cols="30" rows="5" placeholder="Message" className="form-control my-3" required></textarea>
+                                <button className="btn btn-block" type="submit">Request Booking</button>
+                            </form>
+                            :
+                            <div style={{height: "320px"}} className="d-flex justify-content-center align-items-center px-4 bg-light">
                                 <Link className="btn btn-info btn-block" to="/login">Login to Book</Link>
-                            }
-                        </form>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>            

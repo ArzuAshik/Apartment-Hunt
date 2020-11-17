@@ -40,13 +40,21 @@ function OrderMain() {
             })
         })
         .then(response => response.json())
-        .then(result => setAllBooking(result));
+        .then(result => console.log(result));
     }
 
     return (
         <section>
             {
-                allBooking.length !== 0 &&
+                loading &&
+                <div className="pt-5 mt-5 d-flex justify-content-center">
+                    <div className="spinner-border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                </div>
+            }
+            {
+                allBooking.length !== 0 && !loading ?
                 <table className="table">
                     <thead>
                         <tr>
@@ -73,7 +81,9 @@ function OrderMain() {
                             </tr>
                         )}
                     </tbody>
-                </table> 
+                </table>
+                :
+                !loading && <h2 className="text-center mt-3">You Have no Booking Request!</h2> 
             }
         </section>
     )
