@@ -6,9 +6,11 @@ import map from '../../images/map.png';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import SearchResult from './SearchResult';
 
-const Apartments = () => {
+const Apartments = ({ keyword }) => {
     const [allAparts, setAllAparts] = useState([]);
+    const locations = allAparts.filter(apart => apart.location.toLowerCase().includes(keyword));
 
     // fetching all apartment data
     useEffect(() => {
@@ -22,8 +24,18 @@ const Apartments = () => {
             <div className="container">
                 <p>HOUSE RENTS</p>
                 <h2><b>Discover the latest rents <br/> available today</b></h2>
+                {
+                    allAparts.length === 0 &&
+                    <div className="pt-5 mt-5 d-flex justify-content-center">
+                        <div className="spinner-border" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                }
                 <div className="row mt-5">
                     {
+                        locations.length ? 
+                        <SearchResult locations={locations} /> :
                         allAparts.map(apartment =>
                         <div key={apartment._id} className="col-sm-6 col-md-6 col-lg-4 mb-4">
                             <div className="card h-100 border-0">
@@ -44,8 +56,8 @@ const Apartments = () => {
                                     </div> 
                                 </div>                  
                             </div>
-                        </div>)
-                    }
+                        </div>
+                    )}
                 </div>
             </div>
         </section>

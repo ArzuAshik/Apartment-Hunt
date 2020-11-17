@@ -20,6 +20,7 @@ export const UserContext = createContext();
 let store = createStore(allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 function App() {
+  const [keyword, setKeyword] = useState(null);
   const [user, setUser] = useState({
     signed: false,
     name: '',
@@ -27,7 +28,7 @@ function App() {
     password: '',
     message: ''
   });
-
+  
   return (
     <UserContext.Provider value={[user, setUser]}>
       <Provider store={store}>
@@ -35,8 +36,8 @@ function App() {
           <Switch>
             <Route path="/" exact>
               <Navbar />
-              <Header />
-              <Apartments />
+              <Header setKeyword={setKeyword} />
+              <Apartments keyword={keyword} />
               <Services />
               <Footer />
             </Route>

@@ -16,34 +16,44 @@ function Myrent({ email }) {
         .then(data => setMyRent(data))
     }, [email])
 
-    console.log(myRent)
     return (
-    <section>
-        <table className="table text-center">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">House</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Details</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    myRent.map(book =>
-                    <tr key={book._id}>
-                        <td>{book.name}</td>
-                        <td>{book.houseName}</td>
-                        <td>{book.price}</td>
-                        <td>
-                            <Link to={`apartment/${book.houseId}`} className="btn btn-info">View Details</Link>
-                        </td>
-                    </tr>)
-                }
-                </tbody>
-            </table>
+        <section>
+            {
+                myRent.length === 0 &&
+                <div className="pt-5 mt-5 d-flex justify-content-center">
+                    <div className="spinner-border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                </div>
+            }
+            {
+                myRent.length !== 0 &&
+                <table className="table text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">House</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        myRent.map(book =>
+                        <tr key={book._id}>
+                            <td>{book.name}</td>
+                            <td>{book.houseName}</td>
+                            <td>{book.price}</td>
+                            <td>
+                                <Link to={`apartment/${book.houseId}`} className="btn btn-info">View Details</Link>
+                            </td>
+                        </tr>)
+                    }
+                    </tbody>
+                </table>
+            }
         </section>
     )
 }
 
-export default Myrent
+export default Myrent;

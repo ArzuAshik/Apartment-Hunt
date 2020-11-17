@@ -144,45 +144,45 @@ function Login() {
   }
 
   return (
-      <section id="login">
-        <Navbar />
-        <form className="form1 mt-5" onSubmit={subForm}>
-          <h3 className="mb-4"><b>{newUser ? 'Create Account' : 'Login'}</b></h3>
-          {
-            newUser && <div className="form-group">
-              <input onBlur={handleChange} name="name" type="text" placeholder="Your Name" className="form-control" required />
-            </div>
-          }
-          <div className="form-group">
-            <input type="email" onBlur={handleChange} className="form-control" name="email" aria-describedby="emailHelp" placeholder="Your Email" required/>
+    <section id="login">
+      <Navbar />
+      <form className="form1 mt-5" onSubmit={subForm}>
+        <h3 className="mb-4"><b>{newUser ? 'Create Account' : 'Login'}</b></h3>
+        {
+          newUser && <div className="form-group">
+            <input onBlur={handleChange} name="name" type="text" placeholder="Your Name" className="form-control" required />
           </div>
-          <div className="form-group">
-            <input type="password" onBlur={handleChange} className="form-control" name="password" placeholder="Your Password" required/>
+        }
+        <div className="form-group">
+          <input type="email" onBlur={handleChange} className="form-control" name="email" aria-describedby="emailHelp" placeholder="Your Email" required/>
+        </div>
+        <div className="form-group">
+          <input type="password" onBlur={handleChange} className="form-control" name="password" placeholder="Your Password" required/>
+        </div>
+        {
+          newUser && <div className="form-group">
+            <input onBlur={handleChange}  type="password" name="confirm" placeholder="Confirm Password" className="form-control" required />
           </div>
-          {
-            newUser && <div className="form-group">
-              <input onBlur={handleChange}  type="password" name="confirm" placeholder="Confirm Password" className="form-control" required />
-            </div>
-          }
-          <input type="submit" className="btn btn-block login" value={newUser ? 'Create Account' : 'Login'} />
-          <p className="text-danger text-center mt-3">{user.message}</p>
+        }
+        <input type="submit" className="btn btn-block login" value={newUser ? 'Create Account' : 'Login'} />
+        <p className="text-danger text-center mt-3">{user.message}</p>
 
-          <span className="my-4 btn btn-block text-primary" onClick={()=>{
-            setNewUser(!newUser);
-            setUser({})
-          }}>{ newUser ? 'I have an account' : 'I am new here' }</span>
-          <div className="text-center my-4">
-            <h6><b>Or</b></h6>
-          </div>
+        <span className="my-4 btn btn-block text-primary" onClick={()=>{
+          setNewUser(!newUser);
+          setUser({})
+        }}>{ newUser ? 'I have an account' : 'I am new here' }</span>
+        <div className="text-center my-4">
+          <h6><b>Or</b></h6>
+        </div>
 
-          <button  onClick={fblogin}  type="button" className="btn rounded-pill btn-block">
-            <img src={fb} alt="" width="30px" className="mb-1 mr-2" /> Continue With Facebook
-          </button>
-          <button  onClick={googlesignin} type="button" className="btn rounded-pill btn-block">
-            <img src={google} alt="" width="30px" className="mb-1 mr-2" /> Continue With Google
-          </button>
-        </form>
-      </section>
+        <button  onClick={fblogin}  type="button" className="btn rounded-pill btn-block">
+          <img src={fb} alt="" width="30px" className="mb-1 mr-2" /> Continue With Facebook
+        </button>
+        <button  onClick={googlesignin} type="button" className="btn rounded-pill btn-block">
+          <img src={google} alt="" width="30px" className="mb-1 mr-2" /> Continue With Google
+        </button>
+      </form>
+    </section>
   )
 }
 

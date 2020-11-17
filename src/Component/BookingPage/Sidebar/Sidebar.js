@@ -11,8 +11,9 @@ import Addhouse from '../Addhouse/Addhouse';
 import { useDispatch } from 'react-redux';
 import {allBooking, addNewHouse, myBooking} from '../../../Action';
 
-const Sidebar = ({email}) => {
+const Sidebar = ({ email }) => {
     const dispatch = useDispatch();
+    
     return (
         <aside className="d-flex flex-column align-items-center py-5 px-xl-4">
             <Link to="/">
