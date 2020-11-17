@@ -9,7 +9,7 @@ const SearchResult = ({ locations }) => {
         locations.map(apartment =>
             <div key={apartment._id} className="col-sm-6 col-md-6 col-lg-4 mb-4">
                 <div className="card h-100 border-0">
-                    <img src={apartment.img} alt="" className="card-img-top"/>
+                    <img src={apartment.img} alt="" className="card-img-top" style={{maxHeight: '198px'}} />
                     <div className="card-body px-1">
                         <h3 className="my-1"><b>{apartment.title}</b></h3>
                         <p className="mt-3"><img width="15px" src={map} alt=""/> 
